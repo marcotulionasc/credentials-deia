@@ -8,6 +8,7 @@ if ($result) {
     echo '<div class="card-body">';
     
         echo '<div class="table-responsive">';
+        while ($row = $result->fetch_assoc()) {
             echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
                 echo '<thead>';
                     echo '<tr>';
@@ -20,7 +21,7 @@ if ($result) {
                     echo '</tr>';
                 echo '</thead>';
         echo '<tbody>';
-        while ($row = $result->fetch_assoc()) {
+        
         // Calcula a porcentagem de lucro (30%)
         $precoVenda = $row['price'];
         $porcentagemLucro = 30;
