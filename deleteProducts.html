@@ -315,44 +315,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Exibir produtos</h1>
-                    <p class="mb-4">Aqui está todos os produtos cadastrados da página da <a target="_blank"
-                            href="#">Delicias Deia</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800">Excluir produtos</h1>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Produtos</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Produto</th>
-                                            <th>Categoria</th>
-                                            <th>Data registro</th>
-                                            <th>Preço de custo</th>
-                                            <th>Preço de venda</th>
-                                            <th>Porcentagem lucro</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Bolo de pote</td>
-                                            <td>Bolo</td>
-                                            <td>03/09/2023</td>
-                                            <td>R$ 2,00</td>
-                                            <td>R$ 4,00</td>
-                                            <td>30% </td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <form action="delete_product.php" method="POST">
+                        <label for="idProduct">Código do Produto:</label>
+                        <input type="text" name="idProduct" id="idProduct" required>
+                        <input type="submit" value="Excluir Produto">
+                    </form>
+
 
                 </div>
                 <!-- /.container-fluid -->

@@ -4,13 +4,14 @@ require_once 'connection.php';
 $query = "SELECT * FROM Products WHERE active=1";
 $result = $db->query($query);
 
+
+if ($result) {
     echo '<div class="card-body">';
     echo '  <div class="table-responsive">';
     echo '      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
-if ($result) {
-
     echo '          <thead>';
     echo '              <tr>';
+    echo '                  <th>Código Produto</th>';
     echo '                  <th>Produto</th>';
     echo '                  <th>Categoria</th>';
     echo '                  <th>Preço de custo</th>';
@@ -35,6 +36,7 @@ if ($result) {
         $status = ($row['active'] == 1) ? 'ativo' : 'inativo';
 
         echo '<tr>';
+        echo '<td>' . $row['idProduct'] . '</td>';
         echo '<td>' . $row['nameProduct'] . '</td>';
         echo '<td>' . $row['categoryName'] . '</td>';
         echo '<td>' . $precoCusto . '</td>';
