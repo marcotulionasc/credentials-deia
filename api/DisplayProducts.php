@@ -26,6 +26,10 @@ if ($result) {
         $porcentagemLucro = 30; // 30% de lucro, você pode ajustar conforme necessário
         $precoCusto = $precoVenda / (1 + ($porcentagemLucro / 100));
 
+        // Arrendondei os dois por que vai que ela insere no Front-end os centavos com 3 casas
+        $precoCusto = number_format($precoCusto, 2);
+        $precoVenda = number_format($precoVenda, 2);
+
         echo '<tr>';
         echo '<td>' . $row['nameProduct'] . '</td>';
         echo '<td>' . $row['categoryName'] . '</td>';
