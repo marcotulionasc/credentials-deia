@@ -30,13 +30,16 @@ if ($result) {
         $precoCusto = number_format($precoCusto, 2);
         $precoVenda = number_format($precoVenda, 2);
 
+        // Converte o valor de "active" para "ativo" ou "inativo"
+        $status = ($row['active'] == 1) ? 'ativo' : 'inativo';
+
         echo '<tr>';
         echo '<td>' . $row['nameProduct'] . '</td>';
         echo '<td>' . $row['categoryName'] . '</td>';
         echo '<td>' . $precoCusto . '</td>';
         echo '<td>' . $precoVenda . '</td>';
         echo '<td>' . $porcentagemLucro . '%' . '</td>';
-        echo '<td>' . $row['active'] . '</td>';
+        echo '<td>' . $status . '</td>';
         echo '</tr>';
     }
 
