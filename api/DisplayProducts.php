@@ -23,8 +23,8 @@ if ($result) {
     while ($row = $result->fetch_assoc()) {
         // Calcula a porcentagem de lucro (30%)
         $precoVenda = $row['price'];
-        $porcentagemLucro = 30;
-        $precoCusto = $precoVenda + ($precoVenda * ($porcentagemLucro / 100));
+        $porcentagemLucro = 30; // 30% de lucro, você pode ajustar conforme necessário
+        $precoCusto = $precoVenda / (1 + ($porcentagemLucro / 100));
 
         echo '<tr>';
         echo '<td>' . $row['nameProduct'] . '</td>';
