@@ -3,7 +3,7 @@ session_start();
 
 // Verificar se o usuário está autenticado
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: index.html");
+    header("Location: index.php");
     exit;
 }
 
