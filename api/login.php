@@ -22,10 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: index.php");
             exit;
         } else {
-
+            header("Location: index.php");
             echo $email;
+            echo "<br>";
             echo $password;
+            echo "<br>";
             echo $token;
+            echo "<br>";
             echo "Credenciais inválidas.";
         }
     } else {
