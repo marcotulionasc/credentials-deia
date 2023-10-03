@@ -23,9 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $stmt->execute();
 
         if ($result) {
-            echo "Produto inserido com sucesso!";
             $stmt->close();
-
+        
             // Redirecionar para a página index.html após a inserção bem-sucedida
             header("Location: index.html");
             exit;
