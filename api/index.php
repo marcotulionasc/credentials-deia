@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Verificar se o usuário está autenticado
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: index.html");
+    exit;
+}
+
+// Se o usuário estiver autenticado, exiba o conteúdo da página de dashboard aqui
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
