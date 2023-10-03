@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         $_SESSION['admin_id'] = $row['idAdmin'];
-        header("Location: index.php");
+        header("Location: htmlProducts.php");
         exit;
     } else {
         echo "Email não encontrado.";
