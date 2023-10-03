@@ -3,14 +3,14 @@ session_start();
 require_once 'connection.php'; // Inclua seu arquivo de conexão
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
     $token = $_POST['token'];
 
     // Consulta SQL para verificar as credenciais do usuário, incluindo o campo "token"
     $query = "SELECT idAdmin, password, token FROM admin WHERE email = ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
