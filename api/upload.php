@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->close();
         
             // Redirecionar para a página index.html após a inserção bem-sucedida
-            header("Location: index.html");
+            header("Location: ../displayProducts.html");
             exit;
         } else {
             echo "Erro ao inserir o produto.";
