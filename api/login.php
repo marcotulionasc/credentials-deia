@@ -19,9 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $row['password']) && $token === $row['token']) {
             // Autenticação bem-sucedida
             $_SESSION['admin_id'] = $row['idAdmin'];
-            header("Location: index.php"); // Redirecionar para a página de dashboard após o login
+            header("Location: index.php");
             exit;
         } else {
+
+            echo $email;
+            echo $password;
+            echo $token;
             echo "Credenciais inválidas.";
         }
     } else {
