@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Executa a exclusão
         if ($stmt->execute()) {
             // Redireciona para o index.html após a exclusão bem-sucedida
-            header('Location: index.html');
+            header('Location: ../index.html');
             exit; // Certifique-se de sair do script após o redirecionamento
         } else {
             echo "Erro ao excluir o produto.";
