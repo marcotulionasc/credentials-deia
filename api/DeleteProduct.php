@@ -16,8 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Executa a exclusão
         if ($stmt->execute()) {
             // Retorna uma resposta de sucesso
-            header('Location: ../displayProducts.html');
-            exit; // Certifique-se de sair do script após o redirecionamento
+            echo "success";
         } else {
             // Retorna uma resposta de erro
             echo "error";

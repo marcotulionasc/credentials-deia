@@ -237,19 +237,10 @@ if (!isset($_SESSION['admin_id'])) {
                                 echo '<td>' . $precoVenda . '</td>';
                                 echo '<td>' . $porcentagemLucro . '%' . '</td>';
                                 echo '<td>' . $status . '</td>';
-                                echo '<td><button class="edit-button" 
-                                    data-id="' . $row['idProduct'] . '"
-                                    data-name="' . $row['nameProduct'] . '"
-                                    data-price="' . $row['price'] . '"
-                                    data-image="' . $row['image'] . '"
-                                    data-active="' . $row['active'] . '"
-                                    data-category="' . $row['categoryName'] . '">Editar</button></td>';
+                                echo '<td><button>Editar</button></td>';
                                 echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
-                               
                                 echo '</tbody>';
                             }
-
-                            
                             echo '</table>';
                             echo '</div>';
                             echo '</div>';
@@ -336,7 +327,7 @@ for (var i = 0; i < deleteButtons.length; i++) {
   (function() {
     var id = deleteButtons[i].getAttribute("data-id");
     deleteButtons[i].addEventListener("click", function() {
-      var confirmation = confirm("Tem certeza de que deseja excluir o produto com código: " + id + "?");
+      var confirmation = confirm("Tem certeza de que deseja excluir o produto com ID " + id + "?");
       if (confirmation) {
         // Faça a requisição AJAX para excluir o produto
         $.ajax({
