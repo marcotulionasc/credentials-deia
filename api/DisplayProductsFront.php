@@ -30,8 +30,8 @@ if (!isset($_SESSION['admin_id'])) {
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <script src="js\providers\providerProducts.js"></script> <!-- providerProducts -->
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="../js\providers\providerProducts.js"></script> <!-- providerProducts -->
 
 </head>
 
@@ -50,30 +50,29 @@ if (!isset($_SESSION['admin_id'])) {
                 <div class="sidebar-brand-text mx-3">Delicias Deia</div>
             </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+                        <!-- Divider -->
+                        <hr class="sidebar-divider my-0">
 
                 <!-- Nav Item - Display active products -->
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="DisplayProductsFront.php">
                         <i class="fas fa-fw fa-cog"></i>
                         <span>Exibir produtos ativos</span></a>
                 </li>
 
                 <!-- Nav Item - Insert products -->
                 <li class="nav-item">
-                    <a class="nav-link" href="insertProducts.html">
+                    <a class="nav-link" href="InsertProductsFront.php">
                         <i class="fas fa-fw fa-cog"></i>
                         <span>Cadastrar</span></a>
                 </li>
 
                 <!-- Nav Item - Delete products -->
                 <li class="nav-item">
-                    <a class="nav-link" href="deleteProducts.html">
+                    <a class="nav-link" href="DeleteProducts.php">
                         <i class="fas fa-fw fa-cog"></i>
                         <span>Excluir</span></a>
                 </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -196,7 +195,75 @@ if (!isset($_SESSION['admin_id'])) {
                         </div>
                         
                         
-                        <div id="dataProducts"></div>
+                        <?php
+                        require_once 'Connection.php';
+
+                        $query = "SELECT * FROM Products WHERE active=1";
+                        $result = $db->query($query);
+
+
+                        if ($result) {
+                            echo '<div class="card-body">';
+                            echo '  <div class="table-responsive">';
+                            echo '      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
+                            echo '          <thead>';
+                            echo '              <tr>';
+                            echo '                  <th>Código Produto</th>';
+                            echo '                  <th>Produto</th>';
+                            echo '                  <th>Categoria</th>';
+                            echo '                  <th>Preço de custo</th>';
+                            echo '                  <th>Preço de venda</th>';
+                            echo '                  <th>Porcentagem de lucro</th>';
+                            echo '                  <th>Ativo</th>';
+                            echo '                  <th>Editar</th>';
+                            echo '                  <th>Excluir</th>';
+                            echo '              </tr>';
+                            echo '          </thead>';
+                            echo '<tbody>';
+
+                            while ($row = $result->fetch_assoc()) {
+                                // Calcula a porcentagem de lucro (30%)
+                                $precoVenda = $row['price'];
+                                $porcentagemLucro = 30; // 30% de lucro, você pode ajustar conforme necessário
+                                $precoCusto = $precoVenda / (1 + ($porcentagemLucro / 100));
+
+                                // Arrendondei os dois por que vai que ela insere no Front-end os centavos com 3 casas
+                                $precoCusto = number_format($precoCusto, 2);
+                                $precoVenda = number_format($precoVenda, 2);
+
+                                // Converte o valor de "active" para "ativo" ou "inativo"
+                                $status = ($row['active'] == 1) ? 'ativo' : 'inativo';
+
+                                echo '<tr>';
+                                echo '<td>' . $row['idProduct'] . '</td>';
+                                echo '<td>' . $row['nameProduct'] . '</td>';
+                                echo '<td>' . $row['categoryName'] . '</td>';
+                                echo '<td>' . $precoCusto . '</td>';
+                                echo '<td>' . $precoVenda . '</td>';
+                                echo '<td>' . $porcentagemLucro . '%' . '</td>';
+                                echo '<td>' . $status . '</td>';
+                                echo '<td><button class="edit-button" 
+                                    data-id="' . $row['idProduct'] . '"
+                                    data-name="' . $row['nameProduct'] . '"
+                                    data-price="' . $row['price'] . '"
+                                    data-image="' . $row['image'] . '"
+                                    data-active="' . $row['active'] . '"
+                                    data-category="' . $row['categoryName'] . '">Editar</button></td>';
+                                echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
+                               
+                                echo '</tbody>';
+                            }
+
+                            
+                            echo '</table>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+
+                        $db->close();
+                        ?> 
+                        
+
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -250,18 +317,54 @@ if (!isset($_SESSION['admin_id'])) {
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js\providers\providerProducts.js"></script> <!-- providerProducts -->
+    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+
+var deleteButtons = document.getElementsByClassName("delete-button");
+
+
+// Attach click event listeners to delete buttons
+for (var i = 0; i < deleteButtons.length; i++) {
+  (function() {
+    var id = deleteButtons[i].getAttribute("data-id");
+    deleteButtons[i].addEventListener("click", function() {
+      var confirmation = confirm("Tem certeza de que deseja excluir o produto com código: " + id + "?");
+      if (confirmation) {
+        // Faça a requisição AJAX para excluir o produto
+        $.ajax({
+          url: "DeleteProduct.php", // Arquivo PHP para a exclusão
+          method: "POST",
+          data: { id: id }, // Dados que você deseja passar para o arquivo PHP
+          success: function(response) {
+            if (response === "success") {
+              // Atualize a página ou faça outras ações necessárias
+              location.reload(); // Atualiza a página após a exclusão
+            } else {
+              alert("Ocorreu um erro ao excluir o produto.");
+            }
+          }
+        });
+      }
+    });
+  })();
+}
+
+</script>
+
+
 
 </body>
 

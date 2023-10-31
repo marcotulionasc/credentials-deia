@@ -1,10 +1,10 @@
 <?php
-require_once 'connection.php'; // Inclua seu arquivo de conexão com o banco de dados aqui
+require_once 'Connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Verifica se o campo 'idProduct' foi enviado via POST
-    if (isset($_POST['idProduct'])) {
-        $idProduct = $_POST['idProduct'];
+    // Verifica se o campo 'id' foi enviado via POST
+    if (isset($_POST['id'])) {
+        $idProduct = $_POST['id'];
 
         // Evita injeção de SQL usando prepared statements
         $query = "DELETE FROM Products WHERE idProduct = ?";
@@ -15,18 +15,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Executa a exclusão
         if ($stmt->execute()) {
-            // Redireciona para o index.html após a exclusão bem-sucedida
-            header('Location: index.html');
-            exit; // Certifique-se de sair do script após o redirecionamento
+            // Retorna uma resposta de sucesso
+            echo "success";
         } else {
-            echo "Erro ao excluir o produto.";
+            // Retorna uma resposta de erro
+            echo "error";
         }
 
         // Fecha o statement
         $stmt->close();
     } else {
+        // Retorna uma mensagem de erro se o ID não foi fornecido
         echo "ID do Produto não fornecido.";
     }
+} else {
+    // Retorna uma mensagem de erro se a solicitação não for do tipo POST
+    echo "Método de solicitação inválido.";
 }
 
 // Fecha a conexão com o banco de dados

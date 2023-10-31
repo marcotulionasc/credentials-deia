@@ -3,24 +3,27 @@ session_start();
 require_once 'connection.php'; // Inclua seu arquivo de conexão
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
+    
+    // Receber os dados do formulário
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-    // Consulta SQL para verificar o email do usuário
-    $query = "SELECT idAdmin FROM admin WHERE email = ?";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+        // Consulta SQL para verificar o login
+        $sql = "SELECT * FROM admin WHERE email = '$email' AND password = '$password'";
+        $result = $db->query($sql);
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $_SESSION['admin_id'] = $row['idAdmin'];
-        header("Location: ../displayProducts.html");
-        exit;
+        if ($result->num_rows > 0) {
+            // Login correto
+            header("Location: DisplayProductsFront.php");
+        } else {
+            // Login incorreto
+            echo "Login incorreto. Verifique suas credenciais.";
+        }
     } else {
-        echo "Email não encontrado.";
+        echo "Por favor, preencha todos os campos do formulário.";
     }
 
-    $stmt->close();
+    $db->close();
 }
 ?>

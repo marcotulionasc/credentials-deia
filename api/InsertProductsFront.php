@@ -3,7 +3,7 @@ session_start();
 
 // Verificar se o usuário está autenticado
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: htmlProducts.php");
+    header("Location: InsertProductsFront.php");
     exit;
 }
 
@@ -23,13 +23,13 @@ if (!isset($_SESSION['admin_id'])) {
     <title>Painel</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 <body id="page-top">
@@ -47,35 +47,18 @@ if (!isset($_SESSION['admin_id'])) {
                 <div class="sidebar-brand-text mx-3">Delicias Deia</div>
             </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+                    <!-- Divider -->
+                    <hr class="sidebar-divider my-0">
 
-                <!-- Nav Item - Display active products -->
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">
-                        <i class="fas fa-fw fa-cog"></i>
-                        <span>Exibir produtos ativos</span></a>
-                </li>
+                        <!-- Nav Item - Display active products -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="DisplayProductsFront.php">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Exibir produtos ativos</span></a>
+                        </li>
 
-                <!-- Nav Item - Insert products -->
-                <li class="nav-item">
-                    <a class="nav-link" href="insertProducts.html">
-                        <i class="fas fa-fw fa-cog"></i>
-                        <span>Cadastrar</span></a>
-                </li>
-
-                <!-- Nav Item - Delete products -->
-                <li class="nav-item">
-                    <a class="nav-link" href="deleteProducts.html">
-                        <i class="fas fa-fw fa-cog"></i>
-                        <span>Excluir</span></a>
-                </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-
-    
+                        <!-- Divider -->
+                        <hr class="sidebar-divider">
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -311,17 +294,36 @@ if (!isset($_SESSION['admin_id'])) {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Excluir produtos</h1>
-
-                    <form action="api/deleteProduct.php" method="POST">
-                        <label for="idProduct">Código do Produto:</label>
-                        <input type="text" name="idProduct" id="idProduct" required>
-                        <input type="submit" value="Excluir Produto">
+                    <h1 class="h3 mb-2 text-gray-800">Cadastrar produtos</h1>
+                    
+                    <form action="Upload.php" method="POST" enctype="multipart/form-data">
+                        <label for="nome">Nome do Produto:</label>
+                        <input type="text" name="nome" id="nome" required><br><br>
+                
+                        <label for="categoria">Categoria:</label>
+                        <select name="categoria" id="categoria" required>
+                            <option value="Bolo">Bolo</option>
+                            <option value="Sorvete">Sorvete</option>
+                            <option value="Chocolate">Chocolate</option>
+                            <option value="Doces">Doces</option>
+                            <option value="Salgados">Salgados</option>
+                            <option value="Tortas">Tortas</option>
+                        </select><br><br>
+                
+                        <label for="preco_venda">Preço de Venda:</label>
+                        <input type="number" step="0.01" name="preco_venda" id="preco_venda" required><br><br>
+                
+                        <label for="ativo">Ativo:</label>
+                        <input type="checkbox" name="ativo" id="ativo" checked><br><br>
+                
+                        <label for="imagem">Imagem:</label>
+                        <input type="file" name="imagem" id="imagem" accept="image/*" required><br><br>
+                
+                        <input type="submit" value="Inserir Produto">
                     </form>
-
-
-                </div>
-                <!-- /.container-fluid -->
+                
+                </div> <!-- End container-fluid -->
+            
 
             </div>
             <!-- End of Main Content -->
@@ -347,7 +349,7 @@ if (!isset($_SESSION['admin_id'])) {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
+    <!-- Aqui temos um modal já pronto Jaq, poderiamos nos encaixar nele -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -368,21 +370,21 @@ if (!isset($_SESSION['admin_id'])) {
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
 
 </body>
 
