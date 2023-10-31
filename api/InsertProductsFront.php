@@ -264,41 +264,58 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Cadastrar produtos</h1>
-                    
-                    <form action="Upload.php" method="POST" enctype="multipart/form-data">
+                <div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow p-4">
+                <h1 class="h3 mb-2 text-gray-800 text-center">Cadastrar produtos</h1>
+                <form action="Upload.php" method="POST" enctype="multipart/form-data" class="text-left">
+                    <div class="form-group">
                         <label for="nome">Nome do Produto:</label>
-                        <input type="text" name="nome" id="nome" required><br><br>
-                
+                        <input type="text" class="form-control" name="nome" id="nome" required>
+                    </div>
+                    <div class="form-group">
                         <label for="categoria">Categoria:</label>
-                        <select name="categoria" id="categoria" required>
+                        <select class="form-control" name="categoria" id="categoria" required>
                             <option value="Bolo">Bolo</option>
                             <option value="Sorvete">Sorvete</option>
                             <option value="Chocolate">Chocolate</option>
                             <option value="Doces">Doces</option>
                             <option value="Salgados">Salgados</option>
                             <option value="Tortas">Tortas</option>
-                        </select><br><br>
-                
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="preco_venda">Preço de Venda:</label>
-                        <input type="number" step="0.01" name="preco_venda" id="preco_venda" required><br><br>
-                
-                        <label for="ativo">Ativo:</label>
-                        <input type="checkbox" name="ativo" id="ativo" checked><br><br>
-                
+                        <input type="number" step="0.01" class="form-control" name="preco_venda" id="preco_venda" required>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="ativo" id="ativo" checked>
+                        <label class="form-check-label" for="ativo">Ativo</label>
+                    </div>
+                    <div class="form-group text-center">
                         <label for="imagem">Imagem:</label>
-                        <input type="file" name="imagem" id="imagem" accept="image/*" required><br><br>
-                
-                        <input type="submit" value="Inserir Produto">
-                    </form>
-                
-                </div> <!-- End container-fluid -->
-            
-
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="imagem" name="imagem" accept="image/*" required>
+                            <label class="custom-file-label" for="imagem" id="imagem-label">Escolher Arquivo</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">Inserir Produto</button>
+                </form>
             </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById("imagem").addEventListener("change", function() {
+    var fileInput = document.getElementById("imagem");
+    var imageName = fileInput.files[0].name;
+    var label = document.getElementById("imagem-label");
+    label.textContent = imageName;
+});
+</script>
+
             <!-- End of Main Content -->
 
             <!-- Footer -->
