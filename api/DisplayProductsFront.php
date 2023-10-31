@@ -1,14 +1,33 @@
 <?php
 session_start();
+require_once 'connection.php'; // Inclua seu arquivo de conexão
 
-// Verificar se o usuário está autenticado
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: htmlProducts.php");
-    exit;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    // Receber os dados do formulário
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Consulta SQL para verificar o login
+        $sql = "SELECT * FROM admin WHERE email = '$email' AND password = '$password'";
+        $result = $db->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Login correto
+            header("Location: DisplayProductsFront.php");
+        } else {
+            // Login incorreto
+            echo "Login incorreto. Verifique suas credenciais.";
+        }
+    } else {
+        echo "Por favor, preencha todos os campos do formulário.";
+    }
+
+    $db->close();
 }
-
-// Se o usuário estiver autenticado, exiba o conteúdo da página de dashboard aqui
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
