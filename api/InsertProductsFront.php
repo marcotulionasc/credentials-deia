@@ -332,7 +332,7 @@ if (!isset($_SESSION['admin_id'])) {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Marco Nascimento e Jaqueline Gouveia 2023s</span>
                     </div>
                 </div>
             </footer>
