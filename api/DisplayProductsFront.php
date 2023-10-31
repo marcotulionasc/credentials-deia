@@ -67,13 +67,6 @@ if (!isset($_SESSION['admin_id'])) {
                         <span>Cadastrar</span></a>
                 </li>
 
-                <!-- Nav Item - Delete products -->
-                <li class="nav-item">
-                    <a class="nav-link" href="DeleteProducts.php">
-                        <i class="fas fa-fw fa-cog"></i>
-                        <span>Excluir</span></a>
-                </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
