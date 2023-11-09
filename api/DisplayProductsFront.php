@@ -21,6 +21,78 @@
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <script src="../js\providers\providerProducts.js"></script> <!-- providerProducts -->
 
+    <style>
+    /* Estilos para o modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 2;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 2% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        max-width: 40%;
+        text-align: left; 
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block; 
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .form-group input[type="checkbox"] {
+        width: auto;
+    }
+
+    .btn-sm {
+        width: 50%; 
+        margin: 0 auto; 
+        display: block;
+    }
+
+    button.edit-button,
+    button.delete-button {
+        background-color: #007bff; 
+        color: #fff; 
+        border: none; 
+        border-radius: 5px;
+        padding: 5px 10px; 
+        cursor: pointer;
+    }
+
+    button.edit-button:hover,
+    button.delete-button:hover {
+        background-color: #0056b3; 
+    }
+</style>
+
 </head>
 
 <body id="page-top">
@@ -171,76 +243,156 @@
                             href="#">Delicias Deia</a>.</p>
 
                     <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Produtos</h6>
-                        </div>
-                        
-                        
-                        <?php
-                        require_once 'Connection.php';
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Produtos</h6>
+    </div>
 
-                        $query = "SELECT * FROM Products WHERE active=1";
-                        $result = $db->query($query);
+    <?php
+    require_once 'Connection.php';
 
+    $query = "SELECT * FROM Products WHERE active=1";
+    $result = $db->query($query);
 
-                        if ($result) {
-                            echo '<div class="card-body">';
-                            echo '  <div class="table-responsive">';
-                            echo '      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
-                            echo '          <thead>';
-                            echo '              <tr>';
-                            echo '                  <th>Código Produto</th>';
-                            echo '                  <th>Produto</th>';
-                            echo '                  <th>Categoria</th>';
-                            echo '                  <th>Preço de custo</th>';
-                            echo '                  <th>Preço de venda</th>';
-                            echo '                  <th>Porcentagem de lucro</th>';
-                            echo '                  <th>Ativo</th>';
-                            echo '                  <th>Editar</th>';
-                            echo '                  <th>Excluir</th>';
-                            echo '              </tr>';
-                            echo '          </thead>';
-                            echo '<tbody>';
+    if ($result) {
+        echo '<div class="card-body">';
+        echo '  <div class="table-responsive">';
+        echo '      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
+        echo '          <thead>';
+        echo '              <tr>';
+        echo '                  <th>Código Produto</th>';
+        echo '                  <th>Produto</th>';
+        echo '                  <th>Categoria</th>';
+        echo '                  <th>Preço de custo</th>';
+        echo '                  <th>Preço de venda</th>';
+        echo '                  <th>Porcentagem de lucro</th>';
+        echo '                  <th>Ativo</th>';
+        echo '                  <th>Editar</th>';
+        echo '                  <th>Excluir</th>';
+        echo '              </tr>';
+        echo '          </thead>';
+        echo '<tbody>';
 
-                            while ($row = $result->fetch_assoc()) {
-                                // Calcula a porcentagem de lucro (30%)
-                                $precoVenda = $row['price'];
-                                $porcentagemLucro = 30; // 30% de lucro, você pode ajustar conforme necessário
-                                $precoCusto = $precoVenda / (1 + ($porcentagemLucro / 100));
+        while ($row = $result->fetch_assoc()) {
+            // Calcula a porcentagem de lucro (30%)
+            $precoVenda = $row['price'];
+            $porcentagemLucro = 30; // 30% de lucro, você pode ajustar conforme necessário
+            $precoCusto = $precoVenda / (1 + ($porcentagemLucro / 100));
 
-                                // Arrendondei os dois por que vai que ela insere no Front-end os centavos com 3 casas
-                                $precoCusto = number_format($precoCusto, 2);
-                                $precoVenda = number_format($precoVenda, 2);
+            // Arredondei os dois por que vai que ela insere no Front-end os centavos com 3 casas
+            $precoCusto = number_format($precoCusto, 2);
+            $precoVenda = number_format($precoVenda, 2);
 
-                                // Converte o valor de "active" para "ativo" ou "inativo"
-                                $status = ($row['active'] == 1) ? 'ativo' : 'inativo';
+            // Converte o valor de "active" para "ativo" ou "inativo"
+            $status = ($row['active'] == 1) ? 'ativo' : 'inativo';
 
-                                echo '<tr>';
-                                echo '<td>' . $row['idProduct'] . '</td>';
-                                echo '<td>' . $row['nameProduct'] . '</td>';
-                                echo '<td>' . $row['categoryName'] . '</td>';
-                                echo '<td>' . $precoCusto . '</td>';
-                                echo '<td>' . $precoVenda . '</td>';
-                                echo '<td>' . $porcentagemLucro . '%' . '</td>';
-                                echo '<td>' . $status . '</td>';
-                                echo '<td><button>Editar</button></td>';
-                                echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
-                                echo '</tbody>';
-                            }
-                            echo '</table>';
-                            echo '</div>';
-                            echo '</div>';
-                        }
+            echo '<tr>';
+            echo '<td>' . $row['idProduct'] . '</td>';
+            echo '<td>' . $row['nameProduct'] . '</td>';
+            echo '<td>' . $row['categoryName'] . '</td>';
+            echo '<td>' . $precoCusto . '</td>';
+            echo '<td>' . $precoVenda . '</td>';
+            echo '<td>' . $porcentagemLucro . '%' . '</td>';
+            echo '<td>' . $status . '</td>';
+            echo '<td><button class="edit-button" data-name="' . $row['nameProduct'] . '" data-price="' . $row['price'] . '" data-active="' . $row['active'] . '">Editar</button></td>';
+            echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+        echo '</div>';
+        echo '</div>';
+    }
 
-                        $db->close();
-                        ?> 
-                        
+    $db->close();
+    ?> 
 
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
+</div>
+    <div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Editar Produto</h2>
+        <div class="form-group">
+            <label for="productName">Produto:</label>
+            <input type="text" id="productName" placeholder="Nome do Produto">
+        </div>
+        <div class="form-group">
+            <label for="productPrice">Preço:</label>
+            <input type="text" id="productPrice" placeholder="Preço">
+        </div>
+        <div class="form-group">
+            <label for="productCategory">Categoria:</label>
+            <select id="productCategory">
+                <option value="Bolo">Bolo</option>
+                <option value="Sorvete">Sorvete</option>
+                <option value="Chocolate">Chocolate</option>
+                <option value="Doces">Doces</option>
+                <option value="Salgados">Salgados</option>
+                <option value="Tortas">Tortas</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="productImage">Alterar Imagem:</label>
+            <input type="file" id="productImage" accept="image/*">
+        </div>
+        <div class="form-group" style="text-align: left;">
+            <label for="productActive">Ativo:</label>
+            <input type="checkbox" id="productActive"> Ativo
+        </div>
+        <button onclick="saveChanges()" class="btn btn-primary btn-sm">Salvar</button>
+    </div>
+</div>
 
+<script>
+    // Função para abrir o modal de edição
+    function openModal(name, price, category, active) {
+        var modal = document.getElementById("editModal");
+        var productNameInput = document.getElementById("productName");
+        var productPriceInput = document.getElementById("productPrice");
+        var productCategorySelect = document.getElementById("productCategory");
+        var productActiveCheckbox = document.getElementById("productActive");
+
+        productNameInput.value = name;
+        productPriceInput.value = price;
+        productCategorySelect.value = category;
+        productActiveCheckbox.checked = (active === '1');
+
+        modal.style.display = "block";
+    }
+
+    // Função para fechar o modal
+    function closeModal() {
+        var modal = document.getElementById("editModal");
+        modal.style.display = "none";
+    }
+
+    // Função para salvar as alterações
+    function saveChanges() {
+        var productNameInput = document.getElementById("productName");
+        var productPriceInput = document.getElementById("productPrice");
+        var productCategorySelect = document.getElementById("productCategory");
+        var productActiveCheckbox = document.getElementById("productActive");
+
+        var newName = productNameInput.value;
+        var newPrice = productPriceInput.value;
+        var newCategory = productCategorySelect.value;
+        var newActive = productActiveCheckbox.checked;
+
+    
+        closeModal();
+    }
+
+    var editButtons = document.querySelectorAll(".edit-button");
+    editButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            var name = this.getAttribute("data-name");
+            var price = this.getAttribute("data-price");
+            var category = this.getAttribute("data-category");
+            var active = this.getAttribute("data-active");
+
+            openModal(name, price, category, active);
+        });
+    });
+</script>
             </div>
             <!-- End of Main Content -->
 
