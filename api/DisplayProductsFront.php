@@ -294,7 +294,7 @@
             echo '<td>' . $precoVenda . '</td>';
             echo '<td>' . $porcentagemLucro . '%' . '</td>';
             echo '<td>' . $status . '</td>';
-            echo '<td><button class="edit-button" data-name="' . $row['nameProduct'] . '" data-price="' . $row['price'] . '" data-active="' . $row['active'] . '">Editar</button></td>';
+            echo '<td><button class="edit-button" data-id="' . $row['idProduct'] . '" data-name="' . $row['nameProduct'] . '" data-price="' . $row['price'] . '" data-category="' . $row['categoryName'] . '" data-active="' . $row['active'] . '">Editar</button></td>';
             echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
             echo '</tr>';
         }
@@ -341,7 +341,7 @@
 
 <script>
     // Função para abrir o modal de edição
-    function openModal(name, price, category, active) {
+    function openModal(idProduct,name, price, category, active) {
         var modal = document.getElementById("editModal");
         var productNameInput = document.getElementById("productName");
         var productPriceInput = document.getElementById("productPrice");
@@ -354,6 +354,9 @@
         productActiveCheckbox.checked = (active === '1');
 
         modal.style.display = "block";
+
+        var saveButton = document.querySelector(".btn.btn-primary.btn-sm");
+        saveButton.setAttribute("data-id", idProduct);
     }
 
     // Função para fechar o modal
@@ -392,16 +395,17 @@
 
 
     var editButtons = document.querySelectorAll(".edit-button");
-    editButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            var name = this.getAttribute("data-name");
-            var price = this.getAttribute("data-price");
-            var category = this.getAttribute("data-category");
-            var active = this.getAttribute("data-active");
+editButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        var idProduct = this.getAttribute("data-id");
+        var name = this.getAttribute("data-name");
+        var price = this.getAttribute("data-price");
+        var category = this.getAttribute("data-category");
+        var active = this.getAttribute("data-active");
 
-            openModal(name, price, category, active);
-        });
+        openModal(idProduct, name, price, category, active);
     });
+});
 </script>
             </div>
             <!-- End of Main Content -->
