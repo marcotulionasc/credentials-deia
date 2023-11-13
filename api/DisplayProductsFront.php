@@ -294,7 +294,7 @@
             echo '<td>' . $precoVenda . '</td>';
             echo '<td>' . $porcentagemLucro . '%' . '</td>';
             echo '<td>' . $status . '</td>';
-            echo '<td><button class="edit-button" data-id="' . $row['idProduct'] . '" data-name="' . $row['nameProduct'] . '" data-price="' . $row['price'] . '" data-category="' . $row['categoryName'] . '" data-active="' . $row['active'] . '">Editar</button></td>';
+            echo '<td><button class="edit-button" onclick="openEditModal(' . $row['idProduct'] . ', \'' . $row['nameProduct'] . '\', ' . $row['price'] . ', \'' . $row['categoryName'] . '\', ' . $row['active'] . ')">Editar</button></td>';
             echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
             echo '</tr>';
         }
@@ -308,104 +308,69 @@
 
 </div>
 
-    <div id="editModal" class="modal">
+<div id="myModal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Editar Produto</h2>
-        <div class="form-group">
-            <label for="productName">Produto:</label>
-            <input type="text" id="productName" placeholder="Nome do Produto">
-        </div>
-        <div class="form-group">
-            <label for="productPrice">Preço:</label>
-            <input type="text" id="productPrice" placeholder="Preço">
-        </div>
-        <div class="form-group">
-            <label for="productCategory">Categoria:</label>
-            <select id="productCategory">
-                <option value="Bolo">Bolo</option>
-                <option value="Sorvete">Sorvete</option>
-                <option value="Chocolate">Chocolate</option>
-                <option value="Doces">Doces</option>
-                <option value="Salgados">Salgados</option>
-                <option value="Tortas">Tortas</option>
+        <!-- Conteúdo do formulário -->
+        <form id="updateForm" action="UpdateProduct.php" method="post">
+            <label for="idProduct">ID do Produto:</label>
+            <input type="text" id="idProduct" name="idProduct" required>
+
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="price">Preço:</label>
+            <input type="text" id="price" name="price" required>
+
+            <label for="category">Categoria:</label>
+            <input type="text" id="category" name="category" required>
+
+            <label for="active">Ativo:</label>
+            <select id="active" name="active" required>
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
             </select>
-        </div>
-        <div class="form-group" style="text-align: left;">
-            <label for="productActive">Ativo:</label>
-            <input type="checkbox" id="productActive"> Ativo
-        </div>
-        <button onclick="saveChanges(this)" class="btn btn-primary btn-sm" data-id="">Salvar</button>
+
+            <button type="submit">Atualizar Produto</button>
+        </form>
+
+        <!-- Botão para fechar o modal -->
+        <button onclick="closeModal()">Fechar</button>
     </div>
 </div>
 
 <script>
-    // Função para abrir o modal de edição
-    function openModal(idProduct,name, price, category, active) {
-        var modal = document.getElementById("editModal");
-        var productNameInput = document.getElementById("productName");
-        var productPriceInput = document.getElementById("productPrice");
-        var productCategorySelect = document.getElementById("productCategory");
-        var productActiveCheckbox = document.getElementById("productActive");
-
-        productNameInput.value = name;
-        productPriceInput.value = price;
-        productCategorySelect.value = category;
-        productActiveCheckbox.checked = (active === '1');
-
-        modal.style.display = "block";
-
-        var saveButton = document.querySelector(".btn.btn-primary.btn-sm");
-        saveButton.setAttribute("data-id", idProduct);
+    // Função para abrir o modal
+    function openModal() {
+        document.getElementById('myModal').style.display = 'block';
     }
 
     // Função para fechar o modal
     function closeModal() {
-        var modal = document.getElementById("editModal");
-        modal.style.display = "none";
+        document.getElementById('myModal').style.display = 'none';
     }
 
-    function saveChanges(button) {
-    var productId = button.getAttribute("data-id");
-    var productNameInput = document.getElementById("productName");
-    var productPriceInput = document.getElementById("productPrice");
-    var productCategorySelect = document.getElementById("productCategory");
-    var productActiveCheckbox = document.getElementById("productActive");
-
-    var newName = productNameInput.value;
-    var newPrice = productPriceInput.value;
-    var newCategory = productCategorySelect.value;
-    var newActive = productActiveCheckbox.checked;
-
-    // Enviar os dados via AJAX para o servidor
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "UpdateProduct.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            alert("Atualização bem-sucedida");
-
-        location.reload();
+    // Fechar o modal se o usuário clicar fora do conteúdo
+    window.onclick = function (event) {
+        var modal = document.getElementById('myModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
         }
-    };
-    xhr.send("id=" + productId + "&name=" + newName + "&price=" + newPrice + "&category=" + newCategory + "&active=" + newActive);
+    }
 
-    closeModal();
-}
+    function openEditModal(idProduct, name, price, category, active) {
+        document.getElementById('myModal').style.display = 'block';
 
+        // Preencha os campos do formulário com os dados do produto
+        document.getElementById('idProduct').value = idProduct;
+        document.getElementById('name').value = name;
+        document.getElementById('price').value = price;
+        document.getElementById('category').value = category;
 
-    var editButtons = document.querySelectorAll(".edit-button");
-editButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        var idProduct = this.getAttribute("data-id");
-        var name = this.getAttribute("data-name");
-        var price = this.getAttribute("data-price");
-        var category = this.getAttribute("data-category");
-        var active = this.getAttribute("data-active");
+        // Defina a opção ativa no seletor
+        var activeSelect = document.getElementById('active');
+        activeSelect.value = active == 1 ? 'true' : 'false';
+    }
 
-        openModal(idProduct, name, price, category, active);
-    });
-});
 </script>
             </div>
             <!-- End of Main Content -->
