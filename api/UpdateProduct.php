@@ -23,7 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("ssssi", $name, $price, $category, $active, $idProduct);
 
                 if ($stmt->execute()) {
-                    echo "Atualização bem-sucedida"; // Pode retornar uma mensagem de sucesso
+
+                    echo '<script>
+                            alert("Produto alterado com sucesso!");
+                        </script>';
+
+                    // Aguarde 3 segundos antes de redirecionar
+                    header("refresh:1;url=DisplayProductsFront.php");
+                    exit(); // Certifique-se de sair para evitar execução adicional do código
                 } else {
                     echo "Erro na execução da consulta: " . $stmt->error; // Pode retornar uma mensagem de erro
                 }

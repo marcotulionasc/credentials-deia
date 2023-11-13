@@ -21,6 +21,7 @@
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -36,14 +37,14 @@
                 <div class="sidebar-brand-text mx-3">Delicias Deia</div>
             </a>
 
-                    <!-- Divider -->
-                    <hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-                        <!-- Nav Item - Display active products -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="DisplayProductsFront.php">
-                                <span>Exibir produtos ativos</span></a>
-                        </li>
+            <!-- Nav Item - Display active products -->
+            <li class="nav-item">
+                <a class="nav-link" href="DisplayProductsFront.php">
+                    <span>Exibir produtos ativos</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -175,8 +176,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -187,8 +187,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -199,8 +198,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -232,8 +230,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -265,116 +262,119 @@
 
                 <!-- Begin Page Content -->
                 <div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card shadow p-4">
-                <h1 class="h3 mb-2 text-gray-800 text-center">Cadastrar produtos</h1>
-                <form action="Upload.php" method="POST" enctype="multipart/form-data" class="text-left">
-                    <div class="form-group">
-                        <label for="nome">Nome do Produto:</label>
-                        <input type="text" class="form-control" name="nome" id="nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="categoria">Categoria:</label>
-                        <select class="form-control" name="categoria" id="categoria" required>
-                            <option value="Bolo">Bolo</option>
-                            <option value="Sorvete">Sorvete</option>
-                            <option value="Chocolate">Chocolate</option>
-                            <option value="Doces">Doces</option>
-                            <option value="Salgados">Salgados</option>
-                            <option value="Tortas">Tortas</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="preco_venda">Preço de Venda:</label>
-                        <input type="number" step="0.01" class="form-control" name="preco_venda" id="preco_venda" required>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="ativo" id="ativo" checked>
-                        <label class="form-check-label" for="ativo">Ativo</label>
-                    </div>
-                    <div class="form-group text-center">
-                        <label for="imagem">Imagem:</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="imagem" name="imagem" accept="image/*" required>
-                            <label class="custom-file-label" for="imagem" id="imagem-label">Escolher Arquivo</label>
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="card shadow p-4">
+                                <h1 class="h3 mb-2 text-gray-800 text-center">Cadastrar produtos</h1>
+                                <form action="Upload.php" method="POST" enctype="multipart/form-data" class="text-left">
+                                    <div class="form-group">
+                                        <label for="nome">Nome do Produto:</label>
+                                        <input type="text" class="form-control" name="nome" id="nome" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="categoria">Categoria:</label>
+                                        <select class="form-control" name="categoria" id="categoria" required>
+                                            <option value="Bolo">Bolo</option>
+                                            <option value="Sorvete">Sorvete</option>
+                                            <option value="Chocolate">Chocolate</option>
+                                            <option value="Doces">Doces</option>
+                                            <option value="Salgados">Salgados</option>
+                                            <option value="Tortas">Tortas</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="preco_venda">Preço de Venda:</label>
+                                        <input type="number" step="0.01" class="form-control" name="preco_venda"
+                                            id="preco_venda" required>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="ativo" id="ativo" checked>
+                                        <label class="form-check-label" for="ativo">Ativo</label>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <label for="imagem">Imagem:</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="imagem" name="imagem"
+                                                accept="image/*" required>
+                                            <label class="custom-file-label" for="imagem" id="imagem-label">Escolher
+                                                Arquivo</label>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-block" type="submit">Inserir Produto</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-block" type="submit">Inserir Produto</button>
-                </form>
+                </div>
+
+                <script>
+                    document.getElementById("imagem").addEventListener("change", function () {
+                        var fileInput = document.getElementById("imagem");
+                        var imageName = fileInput.files[0].name;
+                        var label = document.getElementById("imagem-label");
+                        label.textContent = imageName;
+                    });
+                </script>
+
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Marco Nascimento e Jaqueline Gouveia 2023</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
             </div>
+            <!-- End of Content Wrapper -->
+
         </div>
-    </div>
-</div>
+        <!-- End of Page Wrapper -->
 
-<script>
-document.getElementById("imagem").addEventListener("change", function() {
-    var fileInput = document.getElementById("imagem");
-    var imageName = fileInput.files[0].name;
-    var label = document.getElementById("imagem-label");
-    label.textContent = imageName;
-});
-</script>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Marco Nascimento e Jaqueline Gouveia 2023</span>
+        <!-- Aqui temos um modal já pronto Jaq, poderiamos nos encaixar nele -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Aqui temos um modal já pronto Jaq, poderiamos nos encaixar nele -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="../js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="../js/demo/datatables-demo.js"></script>
 
 </body>
 

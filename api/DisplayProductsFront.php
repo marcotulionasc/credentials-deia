@@ -22,76 +22,76 @@
     <script src="../js\providers\providerProducts.js"></script> <!-- providerProducts -->
 
     <style>
-    /* Estilos para o modal */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 2;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
-        justify-content: center;
-        align-items: center;
-    }
+        /* Estilos para o modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
 
-    .modal-content {
-        background-color: #fff;
-        margin: 2% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        max-width: 40%;
-        text-align: left; 
-    }
+        .modal-content {
+            background-color: #fff;
+            margin: 2% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            max-width: 40%;
+            text-align: left;
+        }
 
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-    }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
 
-    .form-group {
-        margin-bottom: 15px;
-    }
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-    .form-group label {
-        display: block; 
-    }
+        .form-group label {
+            display: block;
+        }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 10px;
-    }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+        }
 
-    .form-group input[type="checkbox"] {
-        width: auto;
-    }
+        .form-group input[type="checkbox"] {
+            width: auto;
+        }
 
-    .btn-sm {
-        width: 50%; 
-        margin: 0 auto; 
-        display: block;
-    }
+        .btn-sm {
+            width: 50%;
+            margin: 0 auto;
+            display: block;
+        }
 
-    button.edit-button,
-    button.delete-button {
-        background-color: #007bff; 
-        color: #fff; 
-        border: none; 
-        border-radius: 5px;
-        padding: 5px 10px; 
-        cursor: pointer;
-    }
+        button.edit-button,
+        button.delete-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
 
-    button.edit-button:hover,
-    button.delete-button:hover {
-        background-color: #0056b3; 
-    }
-</style>
+        button.edit-button:hover,
+        button.delete-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 
 </head>
 
@@ -110,23 +110,23 @@
                 <div class="sidebar-brand-text mx-3">Delicias Deia</div>
             </a>
 
-                        <!-- Divider -->
-               <!-- Divider -->
-                    <hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-                        <!-- Nav Item - Display active products -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="DisplayProductsFront.php">
-                                <i class="fas fa-fw fa-cog"></i>
-                                <span>Exibir produtos ativos</span></a>
-                        </li>
-
-                <!-- Nav Item - Insert products -->
-                <li class="nav-item">
-                    <a class="nav-link" href="InsertProductsFront.php">
+            <!-- Nav Item - Display active products -->
+            <li class="nav-item">
+                <a class="nav-link" href="DisplayProductsFront.php">
                     <i class="fas fa-fw fa-cog"></i>
-                        <span>Cadastrar</span></a>
-                </li>
+                    <span>Exibir produtos ativos</span></a>
+            </li>
+
+            <!-- Nav Item - Insert products -->
+            <li class="nav-item">
+                <a class="nav-link" href="InsertProductsFront.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Cadastrar</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -203,8 +203,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Marco Nascimento</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -243,230 +242,230 @@
                             href="#">Delicias Deia</a>.</p>
 
                     <!-- DataTales Example -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Produtos</h6>
-    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Produtos</h6>
+                        </div>
 
-    <?php
-    require_once 'Connection.php';
+                        <?php
+                        require_once 'Connection.php';
 
-    $query = "SELECT * FROM Products WHERE active=1";
-    $result = $db->query($query);
+                        $query = "SELECT * FROM Products WHERE active=1";
+                        $result = $db->query($query);
 
-    if ($result) {
-        echo '<div class="card-body">';
-        echo '  <div class="table-responsive">';
-        echo '      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
-        echo '          <thead>';
-        echo '              <tr>';
-        echo '                  <th>Código Produto</th>';
-        echo '                  <th>Produto</th>';
-        echo '                  <th>Categoria</th>';
-        echo '                  <th>Preço de custo</th>';
-        echo '                  <th>Preço de venda</th>';
-        echo '                  <th>Porcentagem de lucro</th>';
-        echo '                  <th>Ativo</th>';
-        echo '                  <th>Editar</th>';
-        echo '                  <th>Excluir</th>';
-        echo '              </tr>';
-        echo '          </thead>';
-        echo '<tbody>';
+                        if ($result) {
+                            echo '<div class="card-body">';
+                            echo '  <div class="table-responsive">';
+                            echo '      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
+                            echo '          <thead>';
+                            echo '              <tr>';
+                            echo '                  <th>Código Produto</th>';
+                            echo '                  <th>Produto</th>';
+                            echo '                  <th>Categoria</th>';
+                            echo '                  <th>Preço de custo</th>';
+                            echo '                  <th>Preço de venda</th>';
+                            echo '                  <th>Porcentagem de lucro</th>';
+                            echo '                  <th>Ativo</th>';
+                            echo '                  <th>Editar</th>';
+                            echo '                  <th>Excluir</th>';
+                            echo '              </tr>';
+                            echo '          </thead>';
+                            echo '<tbody>';
 
-        while ($row = $result->fetch_assoc()) {
-            // Calcula a porcentagem de lucro (30%)
-            $precoVenda = $row['price'];
-            $porcentagemLucro = 30; // 30% de lucro, você pode ajustar conforme necessário
-            $precoCusto = $precoVenda / (1 + ($porcentagemLucro / 100));
+                            while ($row = $result->fetch_assoc()) {
+                                // Calcula a porcentagem de lucro (30%)
+                                $precoVenda = $row['price'];
+                                $porcentagemLucro = 30; // 30% de lucro, você pode ajustar conforme necessário
+                                $precoCusto = $precoVenda / (1 + ($porcentagemLucro / 100));
 
-            // Arredondei os dois por que vai que ela insere no Front-end os centavos com 3 casas
-            $precoCusto = number_format($precoCusto, 2);
-            $precoVenda = number_format($precoVenda, 2);
+                                // Arredondei os dois por que vai que ela insere no Front-end os centavos com 3 casas
+                                $precoCusto = number_format($precoCusto, 2);
+                                $precoVenda = number_format($precoVenda, 2);
 
-            // Converte o valor de "active" para "ativo" ou "inativo"
-            $status = ($row['active'] == 1) ? 'ativo' : 'inativo';
+                                // Converte o valor de "active" para "ativo" ou "inativo"
+                                $status = ($row['active'] == 1) ? 'ativo' : 'inativo';
 
-            echo '<tr>';
-            echo '<td>' . $row['idProduct'] . '</td>';
-            echo '<td>' . $row['nameProduct'] . '</td>';
-            echo '<td>' . $row['categoryName'] . '</td>';
-            echo '<td>' . $precoCusto . '</td>';
-            echo '<td>' . $precoVenda . '</td>';
-            echo '<td>' . $porcentagemLucro . '%' . '</td>';
-            echo '<td>' . $status . '</td>';
-            echo '<td><button class="edit-button" onclick="openEditModal(' . $row['idProduct'] . ', \'' . $row['nameProduct'] . '\', ' . $row['price'] . ', \'' . $row['categoryName'] . '\', ' . $row['active'] . ')">Editar</button></td>';
-            echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
-            echo '</tr>';
-        }
-        echo '</table>';
-        echo '</div>';
-        echo '</div>';
-    }
+                                echo '<tr>';
+                                echo '<td>' . $row['idProduct'] . '</td>';
+                                echo '<td>' . $row['nameProduct'] . '</td>';
+                                echo '<td>' . $row['categoryName'] . '</td>';
+                                echo '<td>' . $precoCusto . '</td>';
+                                echo '<td>' . $precoVenda . '</td>';
+                                echo '<td>' . $porcentagemLucro . '%' . '</td>';
+                                echo '<td>' . $status . '</td>';
+                                echo '<td><button class="edit-button" onclick="openEditModal(' . $row['idProduct'] . ', \'' . $row['nameProduct'] . '\', ' . $row['price'] . ', \'' . $row['categoryName'] . '\', ' . $row['active'] . ')">Editar</button></td>';
+                                echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
+                                echo '</tr>';
+                            }
+                            echo '</table>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
 
-    $db->close();
-    ?> 
+                        $db->close();
+                        ?>
 
-</div>
+                    </div>
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <!-- Conteúdo do formulário -->
-        <form id="updateForm" action="UpdateProduct.php" method="post">
-            <label for="idProduct">ID do Produto:</label>
-            <input type="text" id="idProduct" name="idProduct" required>
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <!-- Conteúdo do formulário -->
+                            <form id="updateForm" action="UpdateProduct.php" method="post">
+                                <label for="idProduct">ID do Produto:</label>
+                                <input type="text" id="idProduct" name="idProduct" readonly required>
 
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>
+                                <label for="name">Nome:</label>
+                                <input type="text" id="name" name="name" required>
 
-            <label for="price">Preço:</label>
-            <input type="text" id="price" name="price" required>
+                                <label for="price">Preço:</label>
+                                <input type="text" id="price" name="price" required>
 
-            <label for="category">Categoria:</label>
-            <input type="text" id="category" name="category" required>
+                                <label for="category">Categoria:</label>
+                                <input type="text" id="category" name="category" required>
 
-            <label for="active">Ativo:</label>
-            <select id="active" name="active" required>
-                <option value="true">Sim</option>
-                <option value="false">Não</option>
-            </select>
+                                <label for="active">Ativo:</label>
+                                <select id="active" name="active" required>
+                                    <option value="true">Sim</option>
+                                    <option value="false">Não</option>
+                                </select>
 
-            <button type="submit">Atualizar Produto</button>
-        </form>
+                                <button type="submit">Atualizar Produto</button>
+                            </form>
 
-        <!-- Botão para fechar o modal -->
-        <button onclick="closeModal()">Fechar</button>
-    </div>
-</div>
+                            <!-- Botão para fechar o modal -->
+                            <button onclick="closeModal()">Fechar</button>
+                        </div>
+                    </div>
 
-<script>
-    // Função para abrir o modal
-    function openModal() {
-        document.getElementById('myModal').style.display = 'block';
-    }
+                    <script>
+                        // Função para abrir o modal
+                        function openModal() {
+                            document.getElementById('myModal').style.display = 'block';
+                        }
 
-    // Função para fechar o modal
-    function closeModal() {
-        document.getElementById('myModal').style.display = 'none';
-    }
+                        // Função para fechar o modal
+                        function closeModal() {
+                            document.getElementById('myModal').style.display = 'none';
+                        }
 
-    // Fechar o modal se o usuário clicar fora do conteúdo
-    window.onclick = function (event) {
-        var modal = document.getElementById('myModal');
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    }
+                        // Fechar o modal se o usuário clicar fora do conteúdo
+                        window.onclick = function (event) {
+                            var modal = document.getElementById('myModal');
+                            if (event.target == modal) {
+                                modal.style.display = 'none';
+                            }
+                        }
 
-    function openEditModal(idProduct, name, price, category, active) {
-        document.getElementById('myModal').style.display = 'block';
+                        function openEditModal(idProduct, name, price, category, active) {
+                            document.getElementById('myModal').style.display = 'block';
 
-        // Preencha os campos do formulário com os dados do produto
-        document.getElementById('idProduct').value = idProduct;
-        document.getElementById('name').value = name;
-        document.getElementById('price').value = price;
-        document.getElementById('category').value = category;
+                            // Preencha os campos do formulário com os dados do produto
+                            document.getElementById('idProduct').value = idProduct;
+                            document.getElementById('name').value = name;
+                            document.getElementById('price').value = price;
+                            document.getElementById('category').value = category;
 
-        // Defina a opção ativa no seletor
-        var activeSelect = document.getElementById('active');
-        activeSelect.value = active == 1 ? 'true' : 'false';
-    }
+                            // Defina a opção ativa no seletor
+                            var activeSelect = document.getElementById('active');
+                            activeSelect.value = active == 1 ? 'true' : 'false';
+                        }
 
-</script>
+                    </script>
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Marco Nascimento e Jaqueline Gouveia 2023</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Content Wrapper -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Marco Nascimento e Jaqueline Gouveia 2023</span>
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-primary" href="login.html">Encerrar a sessão</a>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="login.html">Encerrar a sessão</a>
-                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="../js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-demo.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<script>
-
-var deleteButtons = document.getElementsByClassName("delete-button");
+        <!-- Page level custom scripts -->
+        <script src="../js/demo/datatables-demo.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-// Attach click event listeners to delete buttons
-for (var i = 0; i < deleteButtons.length; i++) {
-  (function() {
-    var id = deleteButtons[i].getAttribute("data-id");
-    deleteButtons[i].addEventListener("click", function() {
-      var confirmation = confirm("Tem certeza de que deseja excluir o produto com ID " + id + "?");
-      if (confirmation) {
-        // Faça a requisição AJAX para excluir o produto
-        $.ajax({
-          url: "DeleteProduct.php", // Arquivo PHP para a exclusão
-          method: "POST",
-          data: { id: id }, // Dados que você deseja passar para o arquivo PHP
-          success: function(response) {
-            if (response === "success") {
-              // Atualize a página ou faça outras ações necessárias
-              location.reload(); // Atualiza a página após a exclusão
-            } else {
-              alert("Ocorreu um erro ao excluir o produto.");
+        <script>
+
+            var deleteButtons = document.getElementsByClassName("delete-button");
+
+
+            // Attach click event listeners to delete buttons
+            for (var i = 0; i < deleteButtons.length; i++) {
+                (function () {
+                    var id = deleteButtons[i].getAttribute("data-id");
+                    deleteButtons[i].addEventListener("click", function () {
+                        var confirmation = confirm("Tem certeza de que deseja excluir o produto com ID " + id + "?");
+                        if (confirmation) {
+                            // Faça a requisição AJAX para excluir o produto
+                            $.ajax({
+                                url: "DeleteProduct.php", // Arquivo PHP para a exclusão
+                                method: "POST",
+                                data: { id: id }, // Dados que você deseja passar para o arquivo PHP
+                                success: function (response) {
+                                    if (response === "success") {
+                                        // Atualize a página ou faça outras ações necessárias
+                                        location.reload(); // Atualiza a página após a exclusão
+                                    } else {
+                                        alert("Ocorreu um erro ao excluir o produto.");
+                                    }
+                                }
+                            });
+                        }
+                    });
+                })();
             }
-          }
-        });
-      }
-    });
-  })();
-}
 
-</script>
+        </script>
 
 
 

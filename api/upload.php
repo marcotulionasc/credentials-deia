@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result) {
             $stmt->close();
-        
+
             // Redirecionar para a página index.html após a inserção bem-sucedida
             header("Location: DisplayProductsFront.php");
             exit;

@@ -3,7 +3,7 @@ session_start();
 require_once 'connection.php'; // Inclua seu arquivo de conexão
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
     // Receber os dados do formulário
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = $_POST['email'];
