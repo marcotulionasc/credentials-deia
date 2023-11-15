@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $stmt->close();
             } else {
-                echo "Erro na preparação da consulta: " . $db->error;
+                echo "Erro na preparação da consulta: ";
             }
         } else {
             echo "Dados inválidos enviados.";
