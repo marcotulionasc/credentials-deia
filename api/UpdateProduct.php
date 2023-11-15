@@ -1,5 +1,5 @@
 <?php
-require_once 'Connection.php';
+require_once 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifique se os campos obrigatórios foram enviados
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </script>';
 
                     // Aguarde 3 segundos antes de redirecionar
-                    header("refresh:1;url=DisplayProductsFront.php");
+                    header("refresh:1;url=displayProductsFront.php");
                     exit(); // Certifique-se de sair para evitar execução adicional do código
                 } else {
                     echo "Erro na execução da consulta: " . $stmt->error; // Pode retornar uma mensagem de erro

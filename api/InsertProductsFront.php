@@ -42,7 +42,7 @@
 
             <!-- Nav Item - Display active products -->
             <li class="nav-item">
-                <a class="nav-link" href="DisplayProductsFront.php">
+                <a class="nav-link" href="displayProductsFront.php">
                     <span>Exibir produtos ativos</span></a>
             </li>
 
@@ -266,7 +266,7 @@
                         <div class="col-md-6 offset-md-3">
                             <div class="card shadow p-4">
                                 <h1 class="h3 mb-2 text-gray-800 text-center">Cadastrar produtos</h1>
-                                <form action="Upload.php" method="POST" enctype="multipart/form-data" class="text-left">
+                                <form action="upload.php" method="POST" enctype="multipart/form-data" class="text-left">
                                     <div class="form-group">
                                         <label for="nome">Nome do Produto:</label>
                                         <input type="text" class="form-control" name="nome" id="nome" required>

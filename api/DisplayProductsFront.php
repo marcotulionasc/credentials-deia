@@ -116,14 +116,14 @@
 
             <!-- Nav Item - Display active products -->
             <li class="nav-item">
-                <a class="nav-link" href="DisplayProductsFront.php">
+                <a class="nav-link" href="displayProductsFront.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Exibir produtos ativos</span></a>
             </li>
 
             <!-- Nav Item - Insert products -->
             <li class="nav-item">
-                <a class="nav-link" href="InsertProductsFront.php">
+                <a class="nav-link" href="insertProductsFront.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Cadastrar</span></a>
             </li>
@@ -248,7 +248,7 @@
                         </div>
 
                         <?php
-                        require_once 'Connection.php';
+                        require_once 'connection.php';
 
                         $query = "SELECT * FROM Products WHERE active=1";
                         $result = $db->query($query);
@@ -310,7 +310,7 @@
                     <div id="myModal" class="modal">
                         <div class="modal-content">
                             <!-- Conteúdo do formulário -->
-                            <form id="updateForm" action="UpdateProduct.php" method="post">
+                            <form id="updateForm" action="updateProduct.php" method="post">
                                 <label for="idProduct">ID do Produto:</label>
                                 <input type="text" id="idProduct" name="idProduct" readonly required>
 
@@ -448,7 +448,7 @@
                         if (confirmation) {
                             // Faça a requisição AJAX para excluir o produto
                             $.ajax({
-                                url: "DeleteProduct.php", // Arquivo PHP para a exclusão
+                                url: "deleteProduct.php", // Arquivo PHP para a exclusão
                                 method: "POST",
                                 data: { id: id }, // Dados que você deseja passar para o arquivo PHP
                                 success: function (response) {

@@ -1,5 +1,5 @@
 <?php
-require_once 'Connection.php';
+require_once 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica se o campo 'id' foi enviado via POST
