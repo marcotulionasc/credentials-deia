@@ -116,14 +116,14 @@
 
             <!-- Nav Item - Display active products -->
             <li class="nav-item">
-                <a class="nav-link" href="displayProductsFront.php">
+                <a class="nav-link" href="DisplayProductsFront.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Exibir produtos ativos</span></a>
             </li>
 
             <!-- Nav Item - Insert products -->
             <li class="nav-item">
-                <a class="nav-link" href="insertProductsFront.php">
+                <a class="nav-link" href="InsertProductsFront.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Cadastrar</span></a>
             </li>

@@ -42,7 +42,7 @@
 
             <!-- Nav Item - Display active products -->
             <li class="nav-item">
-                <a class="nav-link" href="displayProductsFront.php">
+                <a class="nav-link" href="DisplayProductsFront.php">
                     <span>Exibir produtos ativos</span></a>
             </li>
 
