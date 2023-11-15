@@ -448,7 +448,7 @@
                         if (confirmation) {
                             // Faça a requisição AJAX para excluir o produto
                             $.ajax({
-                                url: "deleteProduct.php", // Arquivo PHP para a exclusão
+                                url: "DeleteProduct.php", // Arquivo PHP para a exclusão
                                 method: "POST",
                                 data: { id: id }, // Dados que você deseja passar para o arquivo PHP
                                 success: function (response) {
