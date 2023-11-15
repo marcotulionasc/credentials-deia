@@ -20,75 +20,42 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <script src="../js\providers\providerProducts.js"></script> <!-- providerProducts -->
-
-    <style>
+<style>
+    /* Estilos do modal */
         .modal {
             display: none;
             position: fixed;
-            z-index: 2;
+            z-index: 1;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            justify-content: center;
-            align-items: center;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
         }
 
         .modal-content {
-            background-color: #fff;
-            margin: 2% auto;
+            background-color: #fefefe;
+            margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
-            max-width: 40%;
-            text-align: left;
+            width: 80%;
         }
 
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
+        /* Estilos adicionais para o formulário (opcional) */
+        label, input, select, button {
             display: block;
+            margin-bottom: 10px;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
+        button {
+            background-color: #4CAF50;
+            color: white;
             padding: 10px;
-        }
-
-        .form-group input[type="checkbox"] {
-            width: auto;
-        }
-
-        .btn-sm {
-            width: 50%;
-            margin: 0 auto;
-            display: block;
-        }
-
-        button.edit-button,
-        button.delete-button {
-            background-color: #007bff;
-            color: #fff;
             border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
             cursor: pointer;
-        }
-
-        button.edit-button:hover,
-        button.delete-button:hover {
-            background-color: #0056b3;
         }
     </style>
 
