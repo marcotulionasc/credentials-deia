@@ -310,7 +310,7 @@
                     <div id="myModal" class="modal">
                         <div class="modal-content">
                             <!-- Conteúdo do formulário -->
-                            <form id="updateForm" action="updateProduct.php" method="post">
+                            <form id="updateForm" action="UpdateProduct.php" method="post">
                                 <label for="idProduct">ID do Produto:</label>
                                 <input type="text" id="idProduct" name="idProduct" readonly required>
 
