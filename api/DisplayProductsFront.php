@@ -22,7 +22,6 @@
     <script src="../js\providers\providerProducts.js"></script> <!-- providerProducts -->
 
     <style>
-        /* Estilos para o modal */
         .modal {
             display: none;
             position: fixed;
