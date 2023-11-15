@@ -51,7 +51,6 @@
         }
 
         button {
-            background-color: #4CAF50;
             color: white;
             padding: 10px;
             border: none;
