@@ -185,7 +185,7 @@
                         <?php
                         require_once 'connection.php';
 
-                        $query = "SELECT * FROM Products WHERE active=1";
+                        $query = "SELECT * FROM Products WHERE active=0";
                         $result = $db->query($query);
 
                         if ($result) {
@@ -383,7 +383,7 @@
                         if (confirmation) {
                             // Faça a requisição AJAX para excluir o produto
                             $.ajax({
-                                url: "InativeProduct.php", // Arquivo PHP para a exclusão
+                                url: "DeleteProduct.php", // Arquivo PHP para a exclusão
                                 method: "POST",
                                 data: { id: id }, // Dados que você deseja passar para o arquivo PHP
                                 success: function (response) {
