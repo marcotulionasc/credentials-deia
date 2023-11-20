@@ -379,7 +379,7 @@
                 (function () {
                     var id = deleteButtons[i].getAttribute("data-id");
                     deleteButtons[i].addEventListener("click", function () {
-                        var confirmation = confirm("Tem certeza de que deseja excluir o produto com ID " + id + "?");
+                        var confirmation = confirm("Tem certeza de que deseja desativar o produto com código: " + id + "?");
                         if (confirmation) {
                             // Faça a requisição AJAX para excluir o produto
                             $.ajax({
