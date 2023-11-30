@@ -225,10 +225,10 @@
                                 echo '<td>' . $row['nameProduct'] . '</td>';
                                 echo '<td>' . $row['categoryName'] . '</td>';
                                 echo '<td>' . $precoCusto . '</td>';
-                                echo '<td>' . $precoVenda . '</td>';
+                                echo '<td>' . str_replace('.', ',', $row['price']) . '</td>';
                                 echo '<td>' . $porcentagemLucro . '%' . '</td>';
                                 echo '<td>' . $status . '</td>';
-                                echo '<td><button class="edit-button" onclick="openEditModal(' . $row['idProduct'] . ', \'' . $row['nameProduct'] . '\', ' . $row['price'] . ', \'' . $row['categoryName'] . '\', ' . $row['active'] . ')">Editar</button></td>';
+                                echo '<td><button class="edit-button" onclick="openEditModal(' . $row['idProduct'] . ', \'' . $row['nameProduct'] . '\', ' . str_replace('.', ',', $row['price']) . ', \'' . $row['categoryName'] . '\', ' . $row['active'] . ')">Editar</button></td>';
                                 echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
                                 echo '</tr>';
                             }
