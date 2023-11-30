@@ -183,129 +183,167 @@
                         </div>
 
                         <?php
-                        require_once 'connection.php';
+require_once 'connection.php';
 
-                        $query = "SELECT * FROM Products WHERE active=1";
-                        $result = $db->query($query);
+$query = "SELECT * FROM Products WHERE active=1";
+$result = $db->query($query);
 
-                        if ($result) {
-                            echo '<div class="card-body">';
-                            echo '  <div class="table-responsive">';
-                            echo '      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
-                            echo '          <thead>';
-                            echo '              <tr>';
-                            echo '                  <th>Código Produto</th>';
-                            echo '                  <th>Produto</th>';
-                            echo '                  <th>Categoria</th>';
-                            echo '                  <th>Preço de custo</th>';
-                            echo '                  <th>Preço de venda</th>';
-                            echo '                  <th>Porcentagem de lucro</th>';
-                            echo '                  <th>Ativo</th>';
-                            echo '                  <th>Editar</th>';
-                            echo '                  <th>Excluir</th>';
-                            echo '              </tr>';
-                            echo '          </thead>';
-                            echo '<tbody>';
+if ($result) {
+    echo '<div class="card-body">';
+    echo '  <div class="table-responsive">';
+    echo '      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
+    echo '          <thead>';
+    echo '              <tr>';
+    echo '                  <th>Código Produto</th>';
+    echo '                  <th>Produto</th>';
+    echo '                  <th>Categoria</th>';
+    echo '                  <th>Preço de custo</th>';
+    echo '                  <th>Preço de venda</th>';
+    echo '                  <th>Porcentagem de lucro</th>';
+    echo '                  <th>Ativo</th>';
+    echo '                  <th>Editar</th>';
+    echo '                  <th>Excluir</th>';
+    echo '              </tr>';
+    echo '          </thead>';
+    echo '<tbody>';
 
-                            while ($row = $result->fetch_assoc()) {
-                                // Calcula a porcentagem de lucro (30%)
-                                $precoVenda = $row['price'];
-                                $porcentagemLucro = 30; // 30% de lucro, você pode ajustar conforme necessário
-                                $precoCusto = $precoVenda / (1 + ($porcentagemLucro / 100));
+    while ($row = $result->fetch_assoc()) {
+        $precoVenda = $row['price'];
+        $porcentagemLucro = 30;
+        $precoCusto = $precoVenda / (1 + ($porcentagemLucro / 100));
 
-                                // Arredondei os dois por que vai que ela insere no Front-end os centavos com 3 casas
-                                $precoCusto = number_format($precoCusto, 2);
-                                $precoVenda = number_format($precoVenda, 2);
+        $precoCusto = number_format($precoCusto, 2);
+        $precoVenda = number_format($precoVenda, 2);
 
-                                // Converte o valor de "active" para "ativo" ou "inativo"
-                                $status = ($row['active'] == 1) ? 'ativo' : 'inativo';
+        $status = ($row['active'] == 1) ? 'ativo' : 'inativo';
 
-                                echo '<tr>';
-                                echo '<td>' . $row['idProduct'] . '</td>';
-                                echo '<td>' . $row['nameProduct'] . '</td>';
-                                echo '<td>' . $row['categoryName'] . '</td>';
-                                echo '<td>' . $precoCusto . '</td>';
-                                echo '<td>' . $precoVenda . '</td>';
-                                echo '<td>' . $porcentagemLucro . '%' . '</td>';
-                                echo '<td>' . $status . '</td>';
-                                echo '<td><button class="edit-button" onclick="openEditModal(' . $row['idProduct'] . ', \'' . $row['nameProduct'] . '\', ' . $row['price'] . ', \'' . $row['categoryName'] . '\', ' . $row['active'] . ')">Editar</button></td>';
-                                echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
-                                echo '</tr>';
-                            }
-                            echo '</table>';
-                            echo '</div>';
-                            echo '</div>';
-                        }
+        echo '<tr>';
+        echo '<td>' . $row['idProduct'] . '</td>';
+        echo '<td>' . $row['nameProduct'] . '</td>';
+        echo '<td>' . $row['categoryName'] . '</td>';
+        echo '<td>' . $precoCusto . '</td>';
+        echo '<td>' . $precoVenda . '</td>';
+        echo '<td>' . $porcentagemLucro . '%' . '</td>';
+        echo '<td>' . $status . '</td>';
+        echo '<td><button class="edit-button" onclick="openEditModal(' . $row['idProduct'] . ', \'' . $row['nameProduct'] . '\', ' . $row['price'] . ', \'' . $row['categoryName'] . '\', ' . $row['active'] . ')">Editar</button></td>';
+        echo '<td><button class="delete-button" data-id="' . $row['idProduct'] . '">Excluir</button></td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+    echo '</div>';
+    echo '</div>';
+}
 
-                        $db->close();
-                        ?>
+$db->close();
+?>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <h1 style="color: #343a40; font-size: 20px; text-align: center; margin-bottom: 20px;">Atualizar Produto</h1>
+        <form id="updateForm" action="UpdateProduct.php" method="post">
+            <label for="idProduct">ID do Produto:<br>
+                <input type="text" id="idProduct" name="idProduct" readonly required style="width: 100%;"></label>
 
-                    </div>
+            <label for="name">Nome:<br>
+                <input type="text" id="name" name="name" required style="width: 100%;"></label>
 
-                    <div id="myModal" class="modal">
-                        <div class="modal-content">
-                            <!-- Conteúdo do formulário -->
-                            <form id="updateForm" action="UpdateProduct.php" method="post">
-                                <label for="idProduct">ID do Produto:</label>
-                                <input type="text" id="idProduct" name="idProduct" readonly required>
+            <label for="price">Preço:<br>
+                <input type="text" id="price" name="price" required style="width: 100%;"></label>
 
-                                <label for="name">Nome:</label>
-                                <input type="text" id="name" name="name" required>
+            <label for="category" style="margin-bottom: 10px;">Categoria:<br>
+                <select id="category" name="category" style="width: 100%;" required>
+                    <option value="Bolo">Bolo</option>
+                    <option value="Sorvete">Sorvete</option>
+                    <option value="Chocolate">Chocolate</option>
+                    <option value="Doces">Doces</option>
+                    <option value="Salgados">Salgados</option>
+                    <option value="Tortas">Tortas</option>
+                </select></label>
 
-                                <label for="price">Preço:</label>
-                                <input type="text" id="price" name="price" required>
+            <label for="active" style="margin-bottom: 10px;">Ativo:<br>
+                <select id="active" name="active" style="width: 100%;" required>
+                    <option value="true">Sim</option>
+                    <option value="false">Não</option>
+                </select></label>
 
-                                <label for="category">Categoria:</label>
-                                <input type="text" id="category" name="category" required>
+            <div style="text-align: center; margin-top: 20px;"> <!-- Adicionado espaçamento superior -->
+                <button type="submit" class="edit-button" style="margin-right: 10px;">Atualizar Produto</button>
+                <button id="closeButton" class="edit-button" onclick="closeModal()" style="margin-bottom: 10px;">Fechar</button> <!-- Ajustado o espaçamento inferior -->
+            </div>
+        </form>
+    </div>
+</div>
 
-                                <label for="active">Ativo:</label>
-                                <select id="active" name="active" required>
-                                    <option value="true">Sim</option>
-                                    <option value="false">Não</option>
-                                </select>
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 60%; /* Ajuste a largura conforme necessário */
+        max-width: 600px;
+        text-align: left; /* Ajusta o texto para a esquerda */
+        border-radius: 10px; /* Adiciona bordas curvadas */
+        height: auto; /* Ajuste a altura conforme necessário */
+        overflow-y: auto; /* Adicionado para permitir rolar se o conteúdo for muito grande */
+    }
 
-                                <button type="submit">Atualizar Produto</button>
-                            </form>
+    .modal-content {
+        text-align: left;
+    }
 
-                            <!-- Botão para fechar o modal -->
-                            <button onclick="closeModal()">Fechar</button>
-                        </div>
-                    </div>
+    .edit-button,
+    .delete-button,
+    #updateForm button,
+    #closeButton {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        margin-top: 10px;
+        display: inline-block; /* Torna os botões inline */
+        border-radius: 5px; /* Adiciona bordas curvadas aos botões */
+    }
 
-                    <script>
-                        // Função para abrir o modal
-                        function openModal() {
-                            document.getElementById('myModal').style.display = 'block';
-                        }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
 
-                        // Função para fechar o modal
-                        function closeModal() {
-                            document.getElementById('myModal').style.display = 'none';
-                        }
 
-                        // Fechar o modal se o usuário clicar fora do conteúdo
-                        window.onclick = function (event) {
-                            var modal = document.getElementById('myModal');
-                            if (event.target == modal) {
-                                modal.style.display = 'none';
-                            }
-                        }
+<script>
+    function openModal() {
+        document.getElementById('myModal').style.display = 'block';
+    }
 
-                        function openEditModal(idProduct, name, price, category, active) {
-                            document.getElementById('myModal').style.display = 'block';
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
 
-                            // Preencha os campos do formulário com os dados do produto
-                            document.getElementById('idProduct').value = idProduct;
-                            document.getElementById('name').value = name;
-                            document.getElementById('price').value = price;
-                            document.getElementById('category').value = category;
+    window.onclick = function (event) {
+        var modal = document.getElementById('myModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
 
-                            // Defina a opção ativa no seletor
-                            var activeSelect = document.getElementById('active');
-                            activeSelect.value = active == 1 ? 'true' : 'false';
-                        }
+    function openEditModal(idProduct, name, price, category, active) {
+        document.getElementById('myModal').style.display = 'block';
 
-                    </script>
+        document.getElementById('idProduct').value = idProduct;
+        document.getElementById('name').value = name;
+        document.getElementById('price').value = price;
+        document.getElementById('category').value = category;
+
+        var activeSelect = document.getElementById('active');
+        activeSelect.value = active == 1 ? 'true' : 'false';
+    }
+</script>
                 </div>
                 <!-- End of Main Content -->
 
